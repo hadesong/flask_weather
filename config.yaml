@@ -1,0 +1,9 @@
+libaries:
+- name:lite-weather
+  version:1
+handlers:
+- url: /static/
+  gzip: on
+
+- url: /a-big-file.txt
+  gzip: on
