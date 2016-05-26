@@ -1,59 +1,15 @@
-{% from 'charts.html' import nav %}
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
     <title>天气预报</title>
-    <link rel="stylesheet" href='{{url_for("static" , filename="bootstrap.min.css")}}'>
-    <script src='{{url_for("static", filename="jquery-1.11.3.min.js")}}'></script>
-    <script type="text/javascript" src="{{url_for('static',filename='echarts.common.min.js')}}" ></script>
-    <script>
-    var myChart = echarts.init(document.getElementById('main'));
-    // 指定图表的配置项和数据
-    var option = {
-        title: {
-            text: 'ECharts 入门示例'
-        },
-        tooltip: {},
-        legend: {
-            data: ['销量']
-        },
-        xAxis: {
-            data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-        },
-        yAxis: {},
-        series: [{
-            name: '销量',
-            type: 'bar',
-            data: [5, 20, 36, 10, 10, 20]
-        }]
-    };
-
-    // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
-    </script>
-    <!--<script src='{{url_for("static", filename="js.js")}}'></script>-->
-    <script type="text/javascript">
-    function loadXMLDoc() {
-        var xmlhttp = new XMLHttpRequest();
-        var cn = document.getElementById("cityname").value;
-
-        xmlhttp.onreadystatechange = function() {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                document.getElementById("return").innerHTML = xmlhttp.responseText;
-            }
-        }
-        xmlhttp.open("POST", "/search_seven", true);
-        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xmlhttp.send("cityname=" + cn);
-    }
-    </script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src='http://ajax.microsoft.com/ajax/jquery/jquery-1.11.3.min.js'></script>
+    <script src="//cdn.bootcss.com/echarts/3.1.10/echarts.common.min.js"></script>
 </head>
 
 <body style="margin:0 auto ; width:65%">
@@ -63,17 +19,42 @@
     <div>
         <input type="text" id="cityname" class="form-control" style="width:100%" placeholder="输入城市名称... " aria-describedby="basic-addon1">
         <br>
-        <button type="submit" id="sub" class="btn btn-success" onclick=" loadXMLDoc()">天气</button>
+        <button type="button"  id="sub" class="btn btn-success">查询</button>
     </div>
     <hr>
     <div id="return">
-        <div id="main" class="well well-sm"> 查询结果...</div>
+        <div class="well well-sm">查询结果...</div>
     </div>
+    <br>
+    <br>
+    <br>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("#sub").click(function() {
+            var cn = document.getElementById("cityname").value
+            $.post("search_seven", {
+                    cityname: cn
+                },
+                function(data, status) {
+
+                    $("#return").html(data);
+                })
+        });
+    });
+    </script>
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src='{{url_for("static", filename="bootstrap.min.js")}}'></script>
     <!--IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <br>
+    <br>
+    <br>
+<div class="well well-sm" >
+<p align="center">
+<span class="glyphicon glyphicon-globe"></span>
+这是一首简单的小情歌</p></div>
 </body>
 
 </html>

@@ -19,7 +19,7 @@ def search_city():
     return func.city_data(s)
 '''
 #暂时用不到 的路由....
-@app.route('/search_weather' , methods =['POST' ])   
+@app.route('/search_weather' , methods =['POST','GET' ])   
 def search_weather():
     cityname = request.form.get('cityname').encode('utf-8')
     url = 'http://apis.baidu.com/apistore/weatherservice/cityname?cityname=%s'%cityname
@@ -28,7 +28,7 @@ def search_weather():
 
 
 
-@app.route('/search_seven' , methods =['POST' ])   
+@app.route('/search_seven' , methods =['POST', 'GET' ])   
 def search_seven():
     cityname = request.form.get('cityname').encode('utf-8')
     url = 'http://apis.baidu.com/apistore/weatherservice/recentweathers?cityname=%s'%cityname
