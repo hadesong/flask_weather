@@ -52,6 +52,9 @@ def seven_data(content):
         "xc_info": dict_content['retData']['today']['index'][4]['details'].decode('unicode_escape'),
         "ls_info": dict_content['retData']['today']['index'][5]['details'].decode('unicode_escape'),
 
+        "for_high":dict_content['retData']['today']['hightemp'].decode('unicode_escape'),
+        "for_low":dict_content['retData']['today']['lowtemp'].decode('unicode_escape'),
+
         "for_0": dict_content['retData']['forecast'][0]['date'].decode('unicode_escape'),
         "for_0_high": dict_content['retData']['forecast'][0]['hightemp'].decode('unicode_escape'),
         "for_0_low": dict_content['retData']['forecast'][0]['lowtemp'].decode('unicode_escape'),
@@ -112,7 +115,7 @@ def seven_data(content):
             type : 'category',
             boundaryGap :true,
             '''
-        part2='''data:['%s','%s','%s','%s']'''%(info['for_0'],info['for_1'],info['for_2'],info['for_3'],)
+        part2='''data:['%s','%s','%s','%s','%s']'''%(info['data'],info['for_0'],info['for_1'],info['for_2'],info['for_3'],)
         part3='''
         }
     ],
@@ -134,7 +137,7 @@ def seven_data(content):
                 }
             },
             '''
-        part4='''data:[%s , %s , %s , %s]'''%(info['for_0_high'][:-1],info['for_1_high'][:-1],info['for_2_high'][:-1],info['for_3_high'][:-1],)
+        part4='''data:[%s , %s , %s , %s , %s]'''%(info['for_high'][:-1],info['for_0_high'][:-1],info['for_1_high'][:-1],info['for_2_high'][:-1],info['for_3_high'][:-1],)
         part5='''
         },
         {
@@ -147,7 +150,7 @@ def seven_data(content):
                 }
             },
             '''
-        part6='''data:[%s , %s , %s , %s]'''%(info['for_0_low'][:-1],info['for_1_low'][:-1],info['for_2_low'][:-1],info['for_3_low'][:-1],)
+        part6='''data:[%s , %s , %s , %s , %s]'''%(info['for_low'][:-1],info['for_0_low'][:-1],info['for_1_low'][:-1],info['for_2_low'][:-1],info['for_3_low'][:-1],)
         part7 = '''
         }
     ]
@@ -158,12 +161,9 @@ def seven_data(content):
 '''
         chart = part1+ part11+ part12+part2+part3+part4+part5+part6+part7
         div = '''
-        <div style="margin:0 auto">
-%s
-%s
-</div>
-        '''%(chart , html)
+        <div style="margin:0 auto">%s%s</div>'''%(chart , html)
         return div
+        #return str(dict_content)
 
 
 ## 使用ajax 返回一段js+html代码  但是i不执行 .....
