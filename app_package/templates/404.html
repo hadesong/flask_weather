@@ -17,32 +17,14 @@
     <div class="page-header">
         <a href="/"><h1>天气预报</a><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你那里下雨了吗...</small></h1>
     </div>
-    <div>
-        <input type="text" id="cityname" class="form-control" style="width:100%" placeholder="输入城市名称... " aria-describedby="basic-addon1">
-        <br>
-        <button type="button"  id="sub" class="btn btn-success">查询</button>
-    </div>
-    <hr>
-    <div id="return">
-        <div class="well well-sm">查询结果...</div>
-    </div>
-    <br>
-    <br>
-    <br>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $("#sub").click(function() {
-            var cn = document.getElementById("cityname").value
-            $.post("search_seven", {
-                    cityname: cn
-                },
-                function(data, status) {
+    <div style="margin:0 auto ; width: 65% ">
+    <div class="jumbotron">
+  <h1 align="right">404 &nbsp;&nbsp;&nbsp;</h1>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个应用没这么多页面...</p>
+</div>
 
-                    $("#return").html(data);
-                })
-        });
-    });
-    </script>
+
+    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
